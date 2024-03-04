@@ -2,10 +2,12 @@ package com.educandoweb.course.config;
 
 import com.educandoweb.course.entities.Category;
 import com.educandoweb.course.entities.Order;
+import com.educandoweb.course.entities.Product;
 import com.educandoweb.course.entities.User;
 import com.educandoweb.course.entities.enums.OrderStatus;
 import com.educandoweb.course.repositories.CategoryRepository;
 import com.educandoweb.course.repositories.OrderRepository;
+import com.educandoweb.course.repositories.ProductRepository;
 import com.educandoweb.course.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -28,6 +30,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @Override
     public void run(String... args) throws Exception {
         User user1 = new User(null, "Maria Madalena", "maria1234@gmail.com", "119872732", "1111");
@@ -41,8 +46,18 @@ public class TestConfig implements CommandLineRunner {
         Category category2 = new Category(null, "Books");
         Category category3 = new Category(null, "Computers");
 
+        Product product1 = new Product(null, "The lord od the Rings", "Lorem Ipsum has been the " +
+            "industry" + "s standard dummy text ever since",22.99, null);
+        Product product2 = new Product(null, "Smart TV", "Lorem Ipsum has been the " +
+                "industry",1200.00, null);
+        Product product3 = new Product(null, "Makebook Pro", "Lorem Ipsum has bees standard dummy" +
+                " text ever since",10000.00, null);
+        Product product4 = new Product(null, "Pc Gamer", "industry" + "s standard dummy text ever since",5000.00, null);
+
+
         userRepository.saveAll(Arrays.asList(user1, user2));
         orderRepository.saveAll(Arrays.asList(order1, order2, order3));
         categoryRepository.saveAll(Arrays.asList(category1, category2, category3));
+        productRepository.saveAll(Arrays.asList(product1, product2, product3, product4));
     }
 }
